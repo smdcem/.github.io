@@ -199,7 +199,7 @@ img{ max-width: 100%; display: block; }
 .project-head .backlink:hover{ color: var(--ink); }
 
 .project-head h1{
-  font-size: clamp(28px, 4vw, 38px);
+  font-size: clamp(20px, 4vw, 38px);
   font-weight: 700;
   margin: 0 0 4px;
   line-height: 1.2;
@@ -258,6 +258,9 @@ img{ max-width: 100%; display: block; }
   color: #9a9a9a;
   text-align: center;
   padding: 10px;
+}
+.media-grid.editorial .media-frame {
+  aspect-ratio: auto;
 }
 .media-frame img{ width: 100%; height: 100%; object-fit: cover; }
 
