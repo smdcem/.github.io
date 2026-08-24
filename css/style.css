@@ -28,7 +28,7 @@ body{
   background: var(--paper);
   color: var(--ink);
   font-family: var(--f-ui);
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.55;
 }
 
@@ -46,9 +46,9 @@ img{ max-width: 100%; display: block; }
 .hero-banner{
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 94vh;
   min-height: 520px;
-  max-height: 1080px;
+  max-height: 920px;
   overflow: hidden;
   background:
     repeating-linear-gradient(135deg, #d8d3c6, #d8d3c6 10px, #cfc9ba 10px, #cfc9ba 20px);
@@ -138,37 +138,35 @@ img{ max-width: 100%; display: block; }
 }
 
 .card{
-  flex: 0 0 calc(33.333% - 19px);
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-.card .media-frame{
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  margin-bottom: 14px;
-  padding: 0;
-  background: none;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-.card .thumb img{
+  text-decoration: none;
+  color: var(--ink);
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
+  flex: 0 0 calc(25% - 21px);
+  min-width: 220px;
+}
+
+.card .thumb{
+  aspect-ratio: 5 / 4.2;
+  overflow: hidden;
+  background: #efefef;
+  margin-bottom: 14px;
+}
+.card .thumb img{ width: 100%; height: 100%; object-fit: cover; }
+.card .thumb.placeholder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  background:
+    repeating-linear-gradient(135deg, #efefef, #efefef 10px, #e4e4e4 10px, #e4e4e4 20px);
 }
 
 .card .title{
   text-align: center;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 700;
   margin: 0 0 4px;
 }
@@ -176,7 +174,7 @@ img{ max-width: 100%; display: block; }
 
 .card .tags{
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--ink-soft);
 }
 
@@ -199,7 +197,7 @@ img{ max-width: 100%; display: block; }
 .project-head .backlink:hover{ color: var(--ink); }
 
 .project-head h1{
-  font-size: clamp(20px, 4vw, 38px);
+  font-size: clamp(28px, 4vw, 38px);
   font-weight: 700;
   margin: 0 0 4px;
   line-height: 1.2;
@@ -245,10 +243,6 @@ img{ max-width: 100%; display: block; }
   gap: 10px;
   margin: 30px 0;
 }
-.media-grid.two-column {
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
 .media-frame{
   aspect-ratio: 4 / 3;
   background:
@@ -261,10 +255,7 @@ img{ max-width: 100%; display: block; }
   text-transform: uppercase;
   color: #9a9a9a;
   text-align: center;
-  padding: 0px;
-}
-.media-grid.editorial .media-frame {
-  aspect-ratio: auto;
+  padding: 10px;
 }
 .media-frame img{ width: 100%; height: 100%; object-fit: cover; }
 
@@ -333,24 +324,6 @@ img{ max-width: 100%; display: block; }
 .proj-nav .dir{ display:block; font-size: 10px; letter-spacing:.08em; color: #b0b0b0; text-transform: uppercase; margin-bottom: 4px; }
 .proj-nav .next{ text-align: right; }
 
-.kleroterion-layout .image-1 {
-  grid-column: 1 / 9;
-}
-
-.kleroterion-layout .image-2 {
-  grid-column: 3 / 11;
-  margin-top: 80px;
-}
-
-.kleroterion-layout .image-3 {
-  grid-column: 3 / 11;
-  margin-top: 80px;
-}
-
-.kleroterion-layout .image-4 {
-  grid-column: 1 / 6;
-}
-
 /* ---------- CV page --------------------------------------------------------- */
 
 .cv-head{
@@ -410,6 +383,57 @@ img{ max-width: 100%; display: block; }
 
 @media (max-width: 860px){
   .cv-columns{ flex-direction: column; gap: 8px; }
+}
+
+/* ---------- special image-layout blocks (used inline within the standard
+   project-body wrap, e.g. on the Kleroterion page) ---------------------- */
+
+.grid3{
+  margin-bottom: 28px;
+}
+.grid3 .media-frame{ aspect-ratio: 4 / 3; }
+
+.split-2{
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.split-2 .stack{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.split-2 .stack .media-frame{ aspect-ratio: 4 / 3; }
+.split-2 .tall{ flex: 1.7; }
+.split-2 .tall .media-frame{ aspect-ratio: 4 / 3; }
+
+.row-2{
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.row-2 .media-frame{ flex: 1; aspect-ratio: 4 / 3; }
+
+.row-2-captioned{
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.row-2-captioned figure{ margin: 0; flex: 1; }
+.row-2-captioned .media-frame{ aspect-ratio: 4 / 3; }
+.row-2-captioned figcaption{
+  text-align: center;
+  font-size: 11.5px;
+  font-style: italic;
+  color: var(--grey);
+  margin-top: 8px;
+}
+
+@media (max-width: 700px){
+  .split-2{ flex-direction: column; }
+  .row-2{ flex-direction: column; }
+  .row-2-captioned{ flex-direction: column; }
 }
 
 /* ---------- footer ---------------------------------------------------------- */
