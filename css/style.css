@@ -329,6 +329,24 @@ img{ max-width: 100%; display: block; }
 .proj-nav .dir{ display:block; font-size: 10px; letter-spacing:.08em; color: #b0b0b0; text-transform: uppercase; margin-bottom: 4px; }
 .proj-nav .next{ text-align: right; }
 
+.kleroterion-layout .image-1 {
+  grid-column: 1 / 9;
+}
+
+.kleroterion-layout .image-2 {
+  grid-column: 10 / 13;
+  margin-top: 100px;
+}
+
+.kleroterion-layout .image-3 {
+  grid-column: 3 / 11;
+  margin-top: 80px;
+}
+
+.kleroterion-layout .image-4 {
+  grid-column: 1 / 6;
+}
+
 /* ---------- CV page --------------------------------------------------------- */
 
 .cv-head{
