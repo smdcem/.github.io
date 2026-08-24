@@ -48,7 +48,7 @@ img{ max-width: 100%; display: block; }
   width: 100%;
   height: 94vh;
   min-height: 520px;
-  max-height: 920px;
+  max-height: 1080px;
   overflow: hidden;
   background:
     repeating-linear-gradient(135deg, #d8d3c6, #d8d3c6 10px, #cfc9ba 10px, #cfc9ba 20px);
