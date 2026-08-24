@@ -1,0 +1,435 @@
+/* ==========================================================================
+   Chiemi Shimada — portfolio
+   Plain, gallery-grid design matching the original Google Sites layout:
+   a solid dark header bar, a plain underlined text nav, and a simple grid
+   of image thumbnails with bold titles and grey medium tags underneath.
+   No colour accents, no decorative motion — the work carries the page.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --header-bg: #1a1a1a;
+  --ink:       #101010;
+  --ink-soft:  #444444;
+  --grey:      #5f6368;
+  --line:      #e2e2e2;
+  --paper:     #ffffff;
+
+  --f-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --side: clamp(20px, 6vw, 80px);
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-ui);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+a{ color: inherit; }
+img{ max-width: 100%; display: block; }
+
+.wrap{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--side);
+}
+
+/* ---------- hero banner (home page only) --------------------------------- */
+
+.hero-banner{
+  position: relative;
+  width: 100%;
+  height: 94vh;
+  min-height: 520px;
+  max-height: 920px;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(135deg, #d8d3c6, #d8d3c6 10px, #cfc9ba 10px, #cfc9ba 20px);
+}
+.hero-banner img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-banner .placeholder-label{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #8a8577;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-banner .hero-name{
+  display: none; /* name now lives in the fixed header, see below */
+}
+
+/* ---------- header bar -------------------------------------------------- */
+
+.site-header{
+  background: var(--header-bg);
+}
+
+/* home page only: header is fixed in place from the very top of the page,
+   transparent over the banner image, then solidifies to the dark bar once
+   scrolled (see the small script at the bottom of index.html) */
+.site-header--overlay{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  background: transparent;
+  transition: background-color .25s ease;
+}
+.site-header--overlay.is-scrolled{
+  background: var(--header-bg);
+}
+
+.site-header .bar{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px var(--side);
+}
+
+.site-header .mark{
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* ---------- nav ----------------------------------------------------------- */
+
+.site-nav{
+  padding: 40px var(--side) 56px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.site-nav a{
+  font-size: 15px;
+  text-decoration: underline;
+  color: var(--ink);
+  margin-right: 18px;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.site-nav a.is-active{ font-weight: 700; }
+
+/* ---------- home grid ----------------------------------------------------- */
+
+.grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 28px;
+  padding-bottom: 64px;
+}
+
+.card{
+  text-decoration: none;
+  color: var(--ink);
+  display: block;
+  flex: 0 0 calc(25% - 21px);
+  min-width: 220px;
+}
+
+.card .thumb{
+  aspect-ratio: 5 / 4.2;
+  overflow: hidden;
+  background: #efefef;
+  margin-bottom: 14px;
+}
+.card .thumb img{ width: 100%; height: 100%; object-fit: cover; }
+.card .thumb.placeholder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  background:
+    repeating-linear-gradient(135deg, #efefef, #efefef 10px, #e4e4e4 10px, #e4e4e4 20px);
+}
+
+.card .title{
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+.card .title .sub{ font-weight: 400; }
+
+.card .tags{
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.card:hover .title{ text-decoration: underline; }
+
+/* ---------- project page -------------------------------------------------- */
+
+.project-head{
+  max-width: 900px;
+  padding-top: 48px;
+}
+
+.project-head .backlink{
+  display: inline-block;
+  font-size: 14px;
+  text-decoration: underline;
+  color: var(--grey);
+  margin-bottom: 24px;
+}
+.project-head .backlink:hover{ color: var(--ink); }
+
+.project-head h1{
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 700;
+  margin: 0 0 4px;
+  line-height: 1.2;
+}
+.project-head h1 .sub{ font-weight: 400; font-size: .6em; color: var(--ink-soft); }
+
+.project-head .jp-title{
+  font-size: 17px;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+}
+
+.meta-line{
+  font-size: 14px;
+  color: var(--grey);
+  line-height: 1.7;
+  padding-bottom: 20px;
+  margin: 0 0 28px;
+  border-bottom: 1px solid var(--line);
+  max-width: 900px;
+}
+
+.project-body{ max-width: 900px; }
+
+.project-body p{
+  font-size: 16.5px;
+  color: var(--ink);
+  max-width: 68ch;
+}
+
+.project-body .original-text{
+  font-size: 15px;
+  color: var(--ink-soft);
+  max-width: 68ch;
+  border-left: 2px solid var(--line);
+  padding-left: 16px;
+  margin: 22px 0 30px;
+}
+
+.media-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 30px 0;
+}
+.media-frame{
+  aspect-ratio: 4 / 3;
+  background:
+    repeating-linear-gradient(135deg, #efefef, #efefef 10px, #e4e4e4 10px, #e4e4e4 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  text-align: center;
+  padding: 10px;
+}
+.media-frame img{ width: 100%; height: 100%; object-fit: cover; }
+
+.video-embed{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  margin: 30px 0;
+  background: #101010;
+}
+.video-embed iframe{
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+}
+
+.caption{
+  font-size: 12.5px;
+  color: var(--grey);
+  margin-top: -20px;
+  margin-bottom: 30px;
+}
+
+.block-title{
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 40px 0 12px;
+}
+
+.credits{
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.85;
+}
+.credits .role{ color: var(--ink); font-weight: 600; }
+
+.history-list{ font-size: 14.5px; }
+.history-year{
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+.history-year .y{
+  font-weight: 600;
+  color: var(--ink);
+  flex: 0 0 52px;
+}
+.history-year ul{ margin: 0; padding: 0; list-style: none; flex: 1; }
+.history-year li{ padding: 2px 0; color: var(--ink-soft); }
+.history-year li a{ color: var(--ink-soft); text-decoration: underline; text-decoration-color: var(--line); }
+.history-year li a:hover{ color: var(--ink); text-decoration-color: var(--ink); }
+
+.proj-nav{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 48px;
+  padding: 20px 0 6px;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+}
+.proj-nav a{ text-decoration: underline; color: var(--ink-soft); }
+.proj-nav a:hover{ color: var(--ink); }
+.proj-nav .dir{ display:block; font-size: 10px; letter-spacing:.08em; color: #b0b0b0; text-transform: uppercase; margin-bottom: 4px; }
+.proj-nav .next{ text-align: right; }
+
+/* ---------- CV page --------------------------------------------------------- */
+
+.cv-head{
+  max-width: 900px;
+  padding-top: 48px;
+}
+.cv-head h1{
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+.cv-head .jp-title{ color: var(--ink-soft); font-size: 17px; margin: 0 0 16px; }
+.cv-head .place{
+  font-size: 14px;
+  color: var(--grey);
+  margin: 0 0 20px;
+  line-height: 1.8;
+}
+.cv-head .bio{
+  font-size: 16.5px;
+  max-width: 70ch;
+  margin: 0 0 18px;
+}
+.cv-head .contact{
+  font-size: 14px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.cv-head .contact a{ text-decoration: underline; color: var(--ink-soft); }
+.cv-head .contact a:hover{ color: var(--ink); }
+
+.cv-section{ margin-bottom: 6px; }
+.cv-section h2{
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 44px 0 4px;
+}
+
+.cv-columns{
+  display: flex;
+  gap: 56px;
+  align-items: flex-start;
+  padding-bottom: 64px;
+}
+.cv-col{
+  flex: 1 1 0;
+  min-width: 0;
+}
+.cv-col[lang="ja"]{
+  line-height: 1.9; /* a little extra breathing room for CJK text */
+}
+
+@media (max-width: 860px){
+  .cv-columns{ flex-direction: column; gap: 8px; }
+}
+
+/* ---------- footer ---------------------------------------------------------- */
+
+.site-footer{
+  background: var(--header-bg);
+  color: #ffffff;
+  margin-top: 64px;
+}
+.site-footer .wrap{
+  padding-top: 32px;
+  padding-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.site-footer .social{
+  font-size: 14px;
+  display: flex;
+  gap: 20px;
+}
+.site-footer .social a{ color: #e6e6e6; text-decoration: underline; }
+.site-footer .social a:hover{ color: #ffffff; }
+.site-footer .copy{
+  font-size: 12px;
+  color: #999999;
+}
+
+/* ---------- responsive ------------------------------------------------------ */
+
+@media (max-width: 1100px){
+  .card{ flex-basis: calc(33.333% - 19px); }
+}
+@media (max-width: 760px){
+  .card{ flex-basis: calc(50% - 9px); }
+  .grid{ gap: 30px 18px; }
+  .site-nav a{ margin-right: 12px; }
+  .proj-nav{ flex-direction: column; }
+  .proj-nav .next{ text-align: left; }
+}
+@media (max-width: 480px){
+  .card{ flex-basis: 100%; }
+}
+
+a:focus-visible{
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
